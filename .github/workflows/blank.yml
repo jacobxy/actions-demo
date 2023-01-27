@@ -44,8 +44,7 @@ jobs:
         run: |
          raw=$(git branch -r --contains ${{ github.ref }})
          branch=${raw/origin\/}
-         # echo ::set-env name=BRANCH::$branch 
-         env:
+        env:
           branch-name: $branch
 
       - name: Extract metadata (tag, labels) for docker
