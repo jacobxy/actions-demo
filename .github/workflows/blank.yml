@@ -51,7 +51,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4.0.1
         with:
-          images: jacobli/server-${{env.branch-name}}
+          images: jacobli/web-server
     
       - name: Build and push Docker image
         uses: docker/build-push-action@v3.1.1
