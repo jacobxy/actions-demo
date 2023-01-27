@@ -43,16 +43,16 @@ jobs:
         id: meta
         uses: docker/metadata-action@v4.0.1
         with:
-          images: jacobli/servers
+          images: jacobli/${{github.ref}}
     
-#       - name: Build and push Docker image
-#         uses: docker/build-push-action@v3.1.1
-#         with:
-#           context: .
-#           push: true
-#           platforms: linux/amd64
-#           tags: ${{steps.meta.outputs.tags}}
-#           labels: ${{steps.meta.outputs.labels}}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v3.1.1
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64
+          tags: ${{steps.meta.outputs.tags}}
+          labels: ${{steps.meta.outputs.labels}}
             
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
