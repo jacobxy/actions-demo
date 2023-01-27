@@ -1,6 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
 name: Demo-test
+env:
+  branch-name: main
 
 # Controls when the workflow will run
 on:
@@ -42,13 +44,15 @@ jobs:
         run: |
          raw=$(git branch -r --contains ${{ github.ref }})
          branch=${raw/origin\/}
-         echo ::set-env name=BRANCH::$branch         
+         # echo ::set-env name=BRANCH::$branch 
+         env:
+          branch-name: $branch
 
       - name: Extract metadata (tag, labels) for docker
         id: meta
         uses: docker/metadata-action@v4.0.1
         with:
-          images: jacobli/server-${{env.BRANCH}}
+          images: jacobli/server-${{env.branch-name}}
     
       - name: Build and push Docker image
         uses: docker/build-push-action@v3.1.1
